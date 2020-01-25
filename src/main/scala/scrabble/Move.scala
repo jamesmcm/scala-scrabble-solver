@@ -14,6 +14,7 @@
 // along with scala-scrabble-solver.  If not, see <http://www.gnu.org/licenses/>.
 
 package scrabble
+
 import scrabble.Board._
 import scrabble.Direction._
 import scrabble.Util._

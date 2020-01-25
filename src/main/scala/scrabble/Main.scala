@@ -14,6 +14,7 @@
 // along with scala-scrabble-solver.  If not, see <http://www.gnu.org/licenses/>.
 
 package scrabble
+
 import scrabble.GameRules.getGameRules
 import scrabble.Board._
 import scrabble.Move._
@@ -23,19 +24,16 @@ import scrabble.Util._
 object Main extends App {
 
   if (args.length < 2) {
-    println("Usage: sbt run gametype BOARD.txt WORDLIST.txt LETTERS\ngametype: wwfmp, wwfsp, scrabble")
+    println("Usage: sbt run gametype BOARD.txt WORDLIST.txt LETTERS (limit)\ngametype: wwfmp, wwfsp, scrabble")
     System.exit(1)
   }
 
-
+  val limit: Int = args.lift(4).getOrElse("5").toInt
   val (board: Board, blanks: Set[Position]) = loadScrabble(args(1))
   val letters: Letters = args(3).toList
   val wordlist: String = loadWordlist(args(2))
   val setWordlist: Set[String] = getWordlistAsSet(wordlist)
   val (boardSize: Int, maxLetters: Int, letterScores: Map[Char, Int], bonuses: Map[Position, Bonus], bonusScore: Int) = getGameRules(args(0))
 
-  println(getBestMoves(board, letters, wordlist, setWordlist, letterScores, bonuses, bonusScore, 20, blanks = blanks))
-
-
-
+  getBestMoves(board, letters, wordlist, setWordlist, letterScores, bonuses, bonusScore, limit, blanks = blanks).foreach((x) => println(x))
 }

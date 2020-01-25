@@ -20,19 +20,29 @@ import enumeratum._
 import cats.implicits._
 
 sealed trait Bonus extends EnumEntry with Product with Serializable
+
 object Bonus extends Enum[Bonus] {
   val values = findValues
+
   case object DL extends Bonus
+
   case object TL extends Bonus
+
   case object DW extends Bonus
+
   case object TW extends Bonus
+
 }
 
 sealed trait Direction extends EnumEntry with Product with Serializable
+
 object Direction extends Enum[Direction] {
   val values = findValues
+
   case object Horizontal extends Direction
+
   case object Vertical extends Direction
+
 }
 
 
@@ -64,7 +74,6 @@ object Board {
     // Return whether feasible
     // Check if a given position is feasible given the number of tiles and direction of move:
     // Can we ever be adjacent to existing tiles from here?
-    // TODO: First move case
     direction match {
       case Horizontal => board(position._1).slice(position._2 + 1, position._2 + numLetters).exists(_.isDefined) ||
         (board.lift(position._1 + 1) match {
