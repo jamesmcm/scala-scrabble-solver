@@ -1,6 +1,6 @@
-# scala-scrabble-solver
+# Scala Scrabble Solver
 
-Solver for Words With Friends and Scrabble, written in Scala, using a greedy brute-force approach.
+A solver for Words With Friends and Scrabble, written in Scala, using a greedy brute-force approach.
 
 Note: Only tested with Words With Friends
 
@@ -35,7 +35,7 @@ And `(limit)` is an optional integer argument for the number of results to retur
 #### Example
 
 ```bash
-sbt "run {wwfmp,wwfsp,scrabble} ./src/test/data/simple.txt ./data/wwfwordlist.txt LETTERS"
+sbt "run wwfmp ./src/test/data/simple.txt ./data/wwfwordlist.txt LETTERS"
 
 (((1,9),Vertical,STERLET),7,66)
 (((1,9),Vertical,LETTERS),7,62)
